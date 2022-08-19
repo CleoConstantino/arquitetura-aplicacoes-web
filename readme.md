@@ -144,7 +144,7 @@ Inserir o código abaixo na pasta server.js (sobrescrever o código inserido ant
     const server = express();
     
     server.get('/', (_, res) => {
-	    res.send('Hello World!');
+	    res.send('Hello Express!');
     });
     
     server.listen(3001);
