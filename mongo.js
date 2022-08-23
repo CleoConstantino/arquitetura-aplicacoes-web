@@ -1,4 +1,3 @@
-
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const uri = 
@@ -6,12 +5,19 @@ const uri =
 
 const client = new MongoClient(uri);
 
-client.connect(err => {
-    if(err) {
-        console.log(err);
-        return;
-    }
-  const collection = client.db("test").collection("devices");
-  const result = collection.insertOne({ greeting: 'Hello Mongo'})
-  console.log(result);
-});
+var collection;
+
+module.exports = {
+    connect: () => {
+        client.connect(err => {
+            if(err) {
+                console.log(err);
+                return;
+            }   
+            const collection = client.db("test").collection("devices");
+        });
+    },
+    collection: () => {
+        return collection;
+    },     
+};
