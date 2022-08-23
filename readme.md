@@ -144,7 +144,7 @@ Inserir o código abaixo na pasta server.js (sobrescrever o código inserido ant
     const server = express();
     
     server.get('/', (_, res) => {
-	    res.send('Hello Express!');
+	    res.send('Hello World!');
     });
     
     server.listen(3001);
@@ -162,13 +162,14 @@ Fazer o login na conta do  [MongoDB](https://account.mongodb.com/account/login) 
 
 No terminal, dentro da pasta server, criar um arquivo mongo.js:
 
-    touch mongo.js >> para criar a pasta no linux
-    type null mongo.js >> para criar a pasta no windows
+    touch mongo.js
+    type null mongo.js >> para criar o arquivo no windows
 
 Abrir esse arquivo e inserir o código copiado... ***lembrar de mudar o password*
 Para executar o arquivo mongo.js:
 
     node mongo.js
+    
 
 Para verificar se está executando corretamente: entrar na conta do MongoDB > acessar o Cluster criado > ir na aba Collections > onde vai ter um Collection 'devices' > e vai ter um documento que tem o _id que foi gerado automaticamente, e o cumprimento 'Hello Mongo'.
 
@@ -178,7 +179,7 @@ Para verificar se está executando corretamente: entrar na conta do MongoDB > ac
 
 Site da documentação [aqui.](https://pt-br.reactjs.org/docs/create-a-new-react-app.html)
 
-No terminal, entrar na pasta 'tiered_app', e inserir o comando abaixo:
+No terminal, entrar na pasta 'tiered_app', e inserrir o comando abaixo:
 
 ```
 npx create-react-app client
@@ -187,8 +188,108 @@ npm start
 ```
 > Ao startar a aplicação, vai abrir o navegador automaticamente e mostrar rodando a aplicação em React.
 
+## Conectando o frontend com o backend
+
+Incluido no arquivo 'App.js' o código 'useEffect' e instalado a 'politica de cors' como uma deêpendência para permitir o acesso:
+
+No arquivo server.js, dar o comando abaixo: (instalar o cors) 
+
+    npm install cors
+
+Código no arquivo 'App.js':
+
+    import React, { useState, useEffect } from  'react';
+    import logo from  './logo.svg';
+    import  './App.css';
+    
+    function  App() {
+    const [greeting, setGreeting] =  useState([]);
+    	async  function  fetchGreeting() {
+    	const response =  await  fetch('http://localhost:3001/');
+    	setGreeting(await response.json());
+    }
+    
+    useEffect(() => {
+    	fetchGreeting();
+    }, [greeting]);
+    
+    return (
+    
+    	<div  className="App">
+    		<header  className="App-header">
+    			<img  src={logo}  className="App-logo"  alt="logo"  />
+    			<p>
+    			{greeting} + React
+    			</p>
+    		</header>
+    	</div>
+    	);
+    }
+    export  default App;
+
+Importa o 'cors' no arquivo 'server.js':
+
+    const express =  require('express');
+    const cors =  require('cors');
+    const server =  express();
+    
+    server.use(cors());
+    server.get('/', (_, res) => {
+    	res.json('Hello Express!');
+    });
+    server.listen(3001);
+
+Para dar o start na aplicação na parte do servidor e na parte do cliente, fazer o seguinte: abrir dois terminais: um acessar a pasta server e no outr a pasta client e em cada um deles dar o comando 'npm start', esse comando vai rodar a aplicação em cada camada.
+## Conectando backend com o banco de dados
+
+Ajustar o arquivo mongo.js:
+
+    const { MongoClient, ServerApiVersion } =  require('mongodb');
+    const uri = 				
+    	"mongodb+srv://usuario_database:YNsbORZulGo54Ruc@firstcluster.6q2t1mj.mongodb.net/?retryWrites=true&w=majority";
+    
+    const client =  new  MongoClient(uri);
+    
+    var collection;
+    
+    module.exports  = {
+    	connect: () => {
+    		client.connect(err  => {
+    			if(err) {
+    				console.log(err);
+    				return;
+    			}
+    			collection = client.db("test").collection("devices");
+    		});
+    	},
+    	collection: () => {
+    		return collection;
+    	},
+    };
+
+E importar o mongo no arquivo server.js:
+
+    const express =  require('express');
+    const cors =  require('cors');
+    const mongo =  require('./mongo');
+    
+    const server =  express();
+    server.use(cors());
+    
+    server.get('/', (_, res) => {
+    	mongo
+    		.collection()
+    		.findOne({ greeting:  'Hello Mongo' })
+    		.then((doc) => res.json(`${doc.greeting} + Express!`));
+    	});
+    
+    server.listen(3001, () => {
+    	console.log('Server running on port 3001');
+    	mongo.connect();
+    });
 
 
+ ## Mostrar no client o que veio do banco de dados
 Esta aplicação utiliza uma arquitetura em camadas, divida em:  _Client, Server, Database._
 
 **Client (Apresentação/WEB > ReactJS):**  camada de FrontEnd, parte que vai rodar no navegador do usuário, vai ver e interagir com nossa aplicação.

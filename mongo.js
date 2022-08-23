@@ -1,4 +1,4 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient } = require('mongodb');
 
 const uri = 
     "mongodb+srv://usuario_database:YNsbORZulGo54Ruc@firstcluster.6q2t1mj.mongodb.net/?retryWrites=true&w=majority";
@@ -14,7 +14,7 @@ module.exports = {
                 console.log(err);
                 return;
             }   
-            const collection = client.db("test").collection("devices");
+            collection = client.db("test").collection("devices");
         });
     },
     collection: () => {
