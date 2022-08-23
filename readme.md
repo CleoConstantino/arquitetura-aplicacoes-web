@@ -289,8 +289,7 @@ E importar o mongo no arquivo server.js:
     });
 
 
- ## Mostrar no client o que veio do banco de dados
-Esta aplicação utiliza uma arquitetura em camadas, divida em:  _Client, Server, Database._
+## Esta aplicação utiliza uma arquitetura em camadas, divida em:  _Client, Server, Database._
 
 **Client (Apresentação/WEB > ReactJS):**  camada de FrontEnd, parte que vai rodar no navegador do usuário, vai ver e interagir com nossa aplicação.
 
