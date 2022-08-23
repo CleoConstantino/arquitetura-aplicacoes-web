@@ -59,6 +59,8 @@ Caracteristicas que devem ser levadas em consideração quando pensamos na arqui
 *Microserviços:* distribui em vários pedacinhos. É uma arquitetura de estilo distribuido, pois a implantação é feita de forma separada;
 
 ## Stack MERN (Mongo > Express.JS > React.JS > Node.JS)
+![mern-1232x705-1-1024x586-1](https://user-images.githubusercontent.com/59203960/186192918-ae41e61a-dbfd-44c2-9b7d-ee596fea5be6.jpeg)
+
 
 **Introdução ao Mongo DB:**  é banco de dados orientado a documentos, não é uma estrutura de tabelas igual o PostgreSQL ou MySQL. É um banco de dados escalável, é pago mas tem um plano gratuito. Cada informação registrada no banco de dados é um documento, e é similar ao á objetos JSON (JavaScript Object Notation).  Comparando com um banco de dados relacional que possui 'tabelas', no banco de dados não relacional, ele possui 'documentos'. Tem uma estrutura de escalabilidade e elasticidade, tem um ferramental de monitoramento e alertas. O Cluster é um conjunto de máquinas que vai funcionar como nosso banco de dados.
 
