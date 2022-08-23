@@ -7,6 +7,7 @@
 Conhecimentos adquiridos: atribuições de um arquiteto de software, caracteristicas de arquitetura de desenvolvimento de um sistema e estilos de arquitetura.
 
 Criado uma aplicação MVP do zero onde a stack utilizada foi MERN (Mongo, Express, React, Node):
+![Design sem nome (1)](https://user-images.githubusercontent.com/59203960/186193286-1a2b8d51-6ac4-402b-ae8f-ccf86c523ae2.png)
 
 -   criado um Cluster no MongoDB;
 -   realizado instalação e configuração do NodeJS;
