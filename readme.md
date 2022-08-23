@@ -92,7 +92,7 @@ Comandos no terminal para verificar a versão do node e do npm:
     cd tiered_app >> para navegar dentro da pasta
     mkdir server >> para criar a pasta de servidor
     cd server >> para navegar dentro da pasta
-    type nul server.js >> para criar o arquivo no windows
+    type null server.js >> para criar o arquivo no windows
     touch server.js >> para criar o arquivo no linux
    
     
@@ -162,7 +162,8 @@ Fazer o login na conta do  [MongoDB](https://account.mongodb.com/account/login) 
 
 No terminal, dentro da pasta server, criar um arquivo mongo.js:
 
-    touch mongo.js
+    touch mongo.js >> para criar a pasta no linux
+    type null mongo.js >> para criar a pasta no windows
 
 Abrir esse arquivo e inserir o código copiado... ***lembrar de mudar o password*
 Para executar o arquivo mongo.js:
@@ -177,7 +178,7 @@ Para verificar se está executando corretamente: entrar na conta do MongoDB > ac
 
 Site da documentação [aqui.](https://pt-br.reactjs.org/docs/create-a-new-react-app.html)
 
-No terminal, entrar na pasta 'tiered_app', e inserrir o comando abaixo:
+No terminal, entrar na pasta 'tiered_app', e inserir o comando abaixo:
 
 ```
 npx create-react-app client

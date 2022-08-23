@@ -1,8 +1,10 @@
 const express = require('express');
-    const server = express();
+const cors = require('cors');
+const server = express();
     
-    server.get('/', (_, res) => {
-	    res.send('Hello Express!');
-    });
+server.use(cors());
+server.get('/', (_, res) => {
+	res.json('Hello Express!');
+});
     
-    server.listen(3001);
+server.listen(3001);

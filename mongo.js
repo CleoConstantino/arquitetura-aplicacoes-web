@@ -1,13 +1,17 @@
-const { MongoClient } = require('mongodb');
+
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const uri = 
-    "mongodb+srv://database_user:iuGBR83GFk3eGGLY@firstcluster.ynxjxrm.mongodb.net/?retryWrites=true&w=majority";
+    "mongodb+srv://usuario_database:YNsbORZulGo54Ruc@firstcluster.6q2t1mj.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri);
 
-client.connect((_) => {
+client.connect(err => {
+    if(err) {
+        console.log(err);
+        return;
+    }
   const collection = client.db("test").collection("devices");
-  collection
-    .findOne({greeting: 'Hello Mongo'})
-    .then((document) => console.log(document.greeting));
+  const result = collection.insertOne({ greeting: 'Hello Mongo'})
+  console.log(result);
 });
